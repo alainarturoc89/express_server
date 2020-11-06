@@ -1,16 +1,19 @@
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const configServ = require("./config/server");
+const cors = require('cors');
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
-const configServ = require("./config/server");
+const path = require('path');
+
+const authentication = require("./middleware/authentication");
+const authorization = require("./middleware/authorization");
 
 const seguridad = require('./routes/seguridadRoute');
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 
@@ -21,8 +24,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
-app.use('/seguridad', seguridad);
+app.use(authentication);
+
+app.use('/security', seguridad);
 
 // Directorio raiz
 if (!global.hasOwnProperty("dirRaiz")) { global.dirRaiz = __dirname; }

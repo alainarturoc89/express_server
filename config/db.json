@@ -2,9 +2,9 @@
 	"mysql": {
 		"host": "localhost",
 		"username": "root",
-		"password": "",
+		"password": "1234",
 		"port": "3306",
-		"database": "fixperto",
+		"database": "prueba",
 		"dialect": "mysql",
 		"insecureAuth": true,
 		"define": {

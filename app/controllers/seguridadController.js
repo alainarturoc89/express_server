@@ -21,10 +21,10 @@ class SeguridadController {
 	}
 
 	static login(req, res) {
-		const { email, pass } = req.body;
-		if (!email || !pass) { return res.status(500).send("No hay usuario o contraseña"); }
+		const { email, password } = req.body;
+		if (!email || !password) { return res.status(500).send("Correo o contraseña no enviado"); }
 		SeguridadModel
-			.login({ email, password: pass })
+			.login({ email, password })
 			.then(user => { res.json({ user }); })
 			.catch(error => { console.log(error); return error });
 	}
