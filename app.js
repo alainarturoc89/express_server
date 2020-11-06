@@ -7,8 +7,8 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 
-const authentication = require("./middleware/authentication");
-const authorization = require("./middleware/authorization");
+/*const authentication = require("./middleware/authentication");
+const authorization = require("./middleware/authorization");*/
 
 const seguridad = require('./routes/seguridadRoute');
 
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.use(authentication);
+//app.use(authentication);
 
 app.use('/security', seguridad);
 
